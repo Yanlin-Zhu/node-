@@ -97,3 +97,82 @@ fs.appendFile('index.js', '这段文本是要追加的内容', (err) => {
     console.log("追加成功");
   }
 })
+
+// 5. fs.readFile
+fs.readFile('index.js', (err, data) => {
+  if(err) {
+    console.log(err);
+    return false;
+  } else {
+    console.log("读取文件成功！");
+    console.log(data);
+    // Console：
+    // 读取文件成功！
+    // <Buffer 48 65 6c 6c 6f 20 6a 73 6c 69 61 6e 67 e8 bf 99 e6 ae b5 e6 96 87 e6 9c ac e6 98 af e8 a6 81 e8 bf bd e5 8a a0 e7 9a 84 e5 86 85 e5 ae b9>
+  }
+})
+
+// 6. fs.readdir 读取目录
+fs.readdir('../node_modules', (err, data) => {
+  if(err) {
+    console.log(err);
+    return false;
+  } else {
+    console.log("读取目录成功！");
+    console.log(data);
+    // Console：
+    // 读取目录成功！
+    // [ '03_tool-multiply.js', 'jsliang-module' ]
+  }
+})
+// fs.unlink 删除文件
+
+// 7. fs.rename 重命名
+fs.rename('index.js', 'zz.js', (err) => {
+  if(err) {
+    console.log(err);
+    return false;
+  } else {
+    console.log("重命名成功！");
+  }
+})
+
+// 流的方式读取文件
+let fileReadStream = fs.createReadStream('zz.js');
+// 读取次数
+let count = 0;
+// 保存数据
+let str = '';
+// 开始读取
+fileReadStream.on('data', (chunk) => {
+  console.log(`${++count} 接收到：${chunk.length}`);
+  // Console：1 接收到：30
+  str += chunk;
+})
+// 读取完成
+fileReadStream.on('end', () => {
+  console.log("——结束——");
+  console.log(count);
+  console.log(str);
+
+  // Console：——结束——
+  // 1
+  // console.log("Hello World！");
+})
+// 读取失败
+fileReadStream.on('error', (error) => {
+  console.log(error);
+})
+
+let data = 'console.log("Hello World! 我要存入数据！")';
+
+// 创建一个可以写入的流，写入到文件 index.js 中
+let writeStream = fs.createWriteStream('index.js');
+// 开始写入
+writeStream.write(data, 'utf8');
+// 写入完成
+writeStream.end();
+writeStream.on('finish', () => {
+  console.log('写入完成！');
+  // Console：写入完成
+});
