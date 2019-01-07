@@ -1,0 +1,21 @@
+{
+  "name": "nodeserver",
+  "version": "1.0.0",
+  "description": "https://juejin.im/post/5c1f8e52f265da6170071e43?utm_source=gold_browser_extension",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@zz.github.com:Yanlin-Zhu/node-.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
