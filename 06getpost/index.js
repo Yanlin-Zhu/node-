@@ -2,7 +2,10 @@
 var http = require('http');
 
 // 虚拟 SQL 读取出来的数据
-var items = ['2'];
+var items = {
+  success: true,
+  data: ['高考', '区块链', '三生三世', '区块链', '区块链', '区块链', '区块链', '区块链', '三生三世', '区块链', '区块链', '区块链', '区块链', '区块链', '三生三世', '区块链', '区块链', '区块链', '区块链', '区块链', '三生三世', '区块链', '区块链', '区块链', '区块链']
+};
 
 // 创建 http 服务
 http.createServer(function (req, res) {
@@ -51,4 +54,4 @@ http.createServer(function (req, res) {
   }
 }).listen(3000)
 
-console.log('http server is start...');
+console.log('http server is start at 3000...');
